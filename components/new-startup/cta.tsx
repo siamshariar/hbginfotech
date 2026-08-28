@@ -31,7 +31,7 @@ export function CTASection() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           >
             <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 rounded-full">
               Ready to Launch?
@@ -90,7 +90,7 @@ export function CTASection() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="relative"
           >
             <div className="relative p-8 md:p-10 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10">

@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import { posts } from "@/components/blog-section/index"
+import { posts } from "@/lib/blog-data"
 import { NavHeader } from "@/components/nav-header"
 import { Footer } from "@/components/footer"
 import BlogDetailClient from "@/components/blog-detail-client"

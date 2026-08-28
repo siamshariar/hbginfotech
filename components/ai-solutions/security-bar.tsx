@@ -36,7 +36,7 @@ export function SecurityBar() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-sm mb-6">
@@ -55,7 +55,7 @@ export function SecurityBar() {
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group relative p-6 rounded-xl bg-slate-900/50 backdrop-blur-sm border border-slate-800 hover:border-green-500/30 transition-all duration-300"
               >
@@ -84,7 +84,7 @@ export function SecurityBar() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           transition={{ delay: 0.5 }}
           className="flex flex-wrap justify-center gap-8 mt-12 pt-12 border-t border-slate-800"
         >

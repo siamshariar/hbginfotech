@@ -82,7 +82,7 @@ export function ServicesSection() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
         variants={containerVariants}
         className="container px-4 md:px-6"
       >

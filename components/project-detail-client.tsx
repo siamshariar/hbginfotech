@@ -24,7 +24,7 @@ import {
   Rocket,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import type { Project } from "@/components/project-showcase"
+import type { Project } from "@/lib/projects-data"
 
 // ─── Auto-advancing carousel ──────────────────────────────────────────────────
 
@@ -229,7 +229,7 @@ function FeatureTabs({ project }: { project: Project }) {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
         variants={fadeUp}
         className="text-center mb-10"
       >
@@ -319,7 +319,7 @@ function ProcessTimeline() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           variants={fadeUp}
           className="text-center mb-12"
         >
@@ -342,7 +342,7 @@ function ProcessTimeline() {
                   variants={fadeUp}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                   className="group flex flex-col items-center text-center"
                 >
                   {/* Icon bubble */}
@@ -394,7 +394,7 @@ function TechSpotlight({ technologies }: { technologies: string[] }) {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
         variants={fadeUp}
         className="text-center mb-8"
       >
@@ -413,7 +413,7 @@ function TechSpotlight({ technologies }: { technologies: string[] }) {
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               onMouseEnter={() => setHovered(tech)}
               onMouseLeave={() => setHovered(null)}
               className={`relative flex flex-col items-center gap-3 px-6 py-5 rounded-2xl border cursor-default transition-all duration-300 ${
@@ -529,7 +529,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
       {/* ── Results stats ── */}
       <div className="border-y border-white/5 bg-white/[0.02]">
         <div className="container px-4 md:px-6 py-12">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }} className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {project.results.map((result, i) => (
               <motion.div key={i} custom={i} variants={fadeUp}
                 className="text-center p-6 rounded-xl bg-white/5 border border-white/10 hover:border-[#00ffff]/30 hover:shadow-[0_0_16px_rgba(0,255,255,0.1)] transition-all duration-300">
@@ -585,7 +585,7 @@ export function ProjectDetailClient({ project, prevProject, nextProject }: Props
       {/* ── CTA ── */}
       <div className="border-t border-white/5 bg-gradient-to-b from-transparent to-[#0f1629]/60">
         <div className="container px-4 md:px-6 py-16 text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="max-w-xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }} variants={fadeUp} className="max-w-xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Have a similar project in mind?</h2>
             <p className="text-white/60 mb-8">{"Let's talk about how we can build something great together."}</p>
             <Link href="/#contact">

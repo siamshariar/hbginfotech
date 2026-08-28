@@ -119,7 +119,7 @@ export function StartupSolutionsContent() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-1 rounded-full bg-[#4f46e5]/20 text-[#00ffff] text-sm font-medium mb-4">
@@ -144,7 +144,7 @@ export function StartupSolutionsContent() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.15 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                   className="relative"
                 >
                   <div className="flex flex-col items-center text-center">
@@ -174,7 +174,7 @@ export function StartupSolutionsContent() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-1 rounded-full bg-[#00ffff]/10 text-[#00ffff] text-sm font-medium mb-4">
@@ -195,7 +195,7 @@ export function StartupSolutionsContent() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className="group relative p-6 rounded-xl backdrop-blur-sm border border-[#00ffff]/50 hover:border-[#00ffff] hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00ffff]/5 to-transparent group-hover:from-[#00ffff]/10 transition-all duration-500 rounded-xl" />
@@ -218,7 +218,7 @@ export function StartupSolutionsContent() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-1 rounded-full bg-[#4f46e5]/20 text-[#00ffff] text-sm font-medium mb-4">
@@ -239,7 +239,7 @@ export function StartupSolutionsContent() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className={`relative p-8 rounded-2xl ${
                   tier.highlighted
                     ? "bg-gradient-to-b from-[#4f46e5]/20 to-[#7c3aed]/10 border-2 border-[#00ffff] shadow-[0_0_40px_rgba(0,255,255,0.2)]"
@@ -289,7 +289,7 @@ export function StartupSolutionsContent() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="relative max-w-4xl mx-auto text-center p-12 rounded-3xl bg-gradient-to-r from-[#4f46e5]/20 to-[#7c3aed]/20 border border-[#00ffff]/30 overflow-hidden"
           >
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyem0wLTR2Mkgy NHYtMmgxMnptMC00djJIMjR2LTJoMTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />

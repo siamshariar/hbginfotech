@@ -16,7 +16,7 @@ export function StatsSection() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
         className="container px-4 md:px-6"
       >
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
@@ -39,7 +39,7 @@ export function StatsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className="flex flex-col items-center justify-center space-y-2 rounded-lg border p-6 text-center"
               >
                 <div className="text-4xl font-bold">{stat.number}</div>

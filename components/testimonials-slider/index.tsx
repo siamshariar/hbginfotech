@@ -47,7 +47,7 @@ export function TestimonialsSlider() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-[#00ffff] to-white bg-clip-text text-transparent"
           >
             Client Testimonials
@@ -56,7 +56,7 @@ export function TestimonialsSlider() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-lg text-white/70 max-w-3xl mx-auto"
           >
             Hear what our clients have to say about working with us

@@ -68,7 +68,7 @@ export function BentoGrid() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-indigo-400 bg-indigo-400/10 border border-indigo-400/20 rounded-full">
@@ -90,7 +90,7 @@ export function BentoGrid() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className={`group relative p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-cyan-500/50 transition-all duration-500 overflow-hidden ${item.className}`}
             >
               {/* Gradient background */}

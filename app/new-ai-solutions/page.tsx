@@ -8,7 +8,7 @@ import { NewAIHowItWorks } from "@/components/new-ai/how-it-works";
 import { NewAICTA } from "@/components/new-ai/cta";
 
 export const metadata = {
-  title: "Enterprise AI Solutions | HBG Info Tech",
+  title: "Enterprise AI Solutions",
   description: "Cut customer support costs by up to 70% with our AI Chatbot, Agentic AI, AI Assistant, and RAG Systems. Built for Healthcare, Airlines, and Enterprise.",
 };
 

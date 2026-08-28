@@ -132,7 +132,7 @@ export function CompanyNarrative() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-white via-[#00ffff] to-white bg-clip-text text-transparent"
             >
               Who We Are
@@ -141,7 +141,7 @@ export function CompanyNarrative() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className="text-lg md:text-xl text-white/70 leading-relaxed mb-8"
             >
               HBG Info Tech is a premium software development firm specializing in building enterprise-grade web
@@ -153,7 +153,7 @@ export function CompanyNarrative() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className="grid grid-cols-2 md:grid-cols-4 gap-6"
             >
               {[
@@ -182,7 +182,7 @@ export function CompanyNarrative() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-[#00ffff] to-white bg-clip-text text-transparent">
@@ -196,7 +196,7 @@ export function CompanyNarrative() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
@@ -225,7 +225,7 @@ export function CompanyNarrative() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-[#00ffff] to-white bg-clip-text text-transparent">
@@ -250,7 +250,7 @@ export function CompanyNarrative() {
                     initial={{ opacity: 0, x: isEven ? -30 : 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                     className={`relative flex items-start gap-6 md:gap-0 ${
                       isEven ? "md:flex-row" : "md:flex-row-reverse"
                     }`}

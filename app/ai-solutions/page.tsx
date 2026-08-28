@@ -9,7 +9,7 @@ import { AICTA } from "@/components/ai-solutions/cta";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Enterprise AI Solutions | Agentic AI & RAG Systems | HBG Info Tech",
+  title: "Enterprise AI Solutions | Agentic AI & RAG Systems",
   description:
     "Empower your enterprise with Agentic AI and RAG systems. Autonomous support agents, private knowledge retrieval, and AI infrastructure built for scale and security.",
 };

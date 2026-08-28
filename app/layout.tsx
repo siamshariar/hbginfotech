@@ -8,9 +8,12 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: {
+    default: 'HBG Info Tech | Custom Software, Web & Mobile Development',
+    template: '%s | HBG Info Tech',
+  },
+  description:
+    'HBG Info Tech builds custom software, web, and mobile solutions — from enterprise applications to AI-powered products and startup MVPs.',
   icons: {
     icon: [
       {

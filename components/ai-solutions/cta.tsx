@@ -17,13 +17,13 @@ export function AICTA() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="max-w-4xl mx-auto text-center"
         >
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             transition={{ type: "spring", duration: 0.8 }}
             className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-600 to-cyan-500 mb-8"
           >
@@ -65,7 +65,7 @@ export function AICTA() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             transition={{ delay: 0.3 }}
             className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-slate-800 max-w-3xl mx-auto"
           >

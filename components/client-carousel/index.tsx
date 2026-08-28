@@ -2,49 +2,18 @@
 
 import { motion, useAnimationControls } from "framer-motion"
 import { useEffect } from "react"
-import Image from "next/image"
 
 const clients = [
-  {
-    name: "Tech Corp",
-    logo: "/placeholder.svg?height=80&width=200",
-  },
-  {
-    name: "Innovation Labs",
-    logo: "/placeholder.svg?height=60&width=180",
-  },
-  {
-    name: "Future Systems",
-    logo: "/placeholder.svg?height=100&width=160",
-  },
-  {
-    name: "Global Solutions",
-    logo: "/placeholder.svg?height=70&width=220",
-  },
-  {
-    name: "Digital Dynamics",
-    logo: "/placeholder.svg?height=90&width=180",
-  },
-  {
-    name: "Smart Tech",
-    logo: "/placeholder.svg?height=75&width=200",
-  },
-  {
-    name: "Cloud Systems",
-    logo: "/placeholder.svg?height=85&width=190",
-  },
-  {
-    name: "Data Corp",
-    logo: "/placeholder.svg?height=65&width=210",
-  },
-  {
-    name: "AI Solutions",
-    logo: "/placeholder.svg?height=95&width=170",
-  },
-  {
-    name: "Tech Innovate",
-    logo: "/placeholder.svg?height=80&width=200",
-  },
+  { name: "Tech Corp" },
+  { name: "Innovation Labs" },
+  { name: "Future Systems" },
+  { name: "Global Solutions" },
+  { name: "Digital Dynamics" },
+  { name: "Smart Tech" },
+  { name: "Cloud Systems" },
+  { name: "Data Corp" },
+  { name: "AI Solutions" },
+  { name: "Tech Innovate" },
 ]
 
 export function ClientCarousel() {
@@ -76,7 +45,7 @@ export function ClientCarousel() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-[#00ffff] to-white bg-clip-text text-transparent"
           >
             Our Clients
@@ -85,7 +54,7 @@ export function ClientCarousel() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-lg text-white/70 max-w-3xl mx-auto"
           >
             Trusted by leading companies worldwide
@@ -110,14 +79,9 @@ export function ClientCarousel() {
                 <div key={`first-${index}`} className="flex-shrink-0 w-48 h-24 relative group">
                   <div className="absolute inset-0 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group-hover:border-[#00ffff]/50 transition-all duration-300" />
                   <div className="relative w-full h-full p-4 flex items-center justify-center">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={client.logo || "/placeholder.svg"}
-                        alt={client.name}
-                        fill
-                        className="object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                    </div>
+                    <span className="text-lg font-semibold text-white/50 group-hover:text-white/90 transition-colors duration-300 whitespace-nowrap">
+                      {client.name}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -126,14 +90,9 @@ export function ClientCarousel() {
                 <div key={`second-${index}`} className="flex-shrink-0 w-48 h-24 relative group">
                   <div className="absolute inset-0 rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group-hover:border-[#00ffff]/50 transition-all duration-300" />
                   <div className="relative w-full h-full p-4 flex items-center justify-center">
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={client.logo || "/placeholder.svg"}
-                        alt={client.name}
-                        fill
-                        className="object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                    </div>
+                    <span className="text-lg font-semibold text-white/50 group-hover:text-white/90 transition-colors duration-300 whitespace-nowrap">
+                      {client.name}
+                    </span>
                   </div>
                 </div>
               ))}

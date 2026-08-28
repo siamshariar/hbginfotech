@@ -34,7 +34,7 @@ export function DataBrain() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           >
             <span className="text-violet-400 text-sm font-medium tracking-wider uppercase mb-4 block">
               Internal Intelligence
@@ -58,7 +58,7 @@ export function DataBrain() {
                   key={feature}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                   transition={{ delay: i * 0.1 }}
                   className="flex items-center gap-3 text-slate-300"
                 >
@@ -75,7 +75,7 @@ export function DataBrain() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="relative"
           >
             <div className="relative p-8 rounded-2xl bg-slate-900/80 backdrop-blur-sm border border-slate-800">

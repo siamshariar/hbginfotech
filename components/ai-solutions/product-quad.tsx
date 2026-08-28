@@ -48,7 +48,7 @@ export function ProductQuad() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="text-center mb-16"
         >
           <span className="text-cyan-400 text-sm font-medium tracking-wider uppercase mb-4 block">
@@ -69,7 +69,7 @@ export function ProductQuad() {
               key={product.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               transition={{ duration: 0.5, delay: product.delay }}
               className={`group relative p-8 rounded-2xl bg-slate-900/50 backdrop-blur-sm border border-slate-800 hover:border-slate-700 transition-all duration-500 ${product.borderGlow} hover:shadow-2xl`}
             >

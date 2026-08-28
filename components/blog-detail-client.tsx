@@ -18,7 +18,7 @@ import {
   CheckCircle2,
   ChevronUp,
 } from "lucide-react"
-import type { BlogPost } from "@/components/blog-section/index"
+import type { BlogPost } from "@/lib/blog-data"
 
 function ReadingProgress() {
   const [progress, setProgress] = useState(0)
@@ -243,7 +243,7 @@ export default function BlogDetailClient({ post, related }: Props) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                     className="scroll-mt-28"
                   >
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-5 flex items-start gap-3">
@@ -260,7 +260,7 @@ export default function BlogDetailClient({ post, related }: Props) {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className="mt-14 p-6 rounded-2xl bg-gradient-to-br from-[#00ffff]/5 to-[#4b3b82]/10 border border-[#00ffff]/20"
               >
                 <p className="text-xs font-bold uppercase tracking-widest text-[#00ffff] mb-3">Key Takeaway</p>
@@ -292,7 +292,7 @@ export default function BlogDetailClient({ post, related }: Props) {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className="mt-14 flex items-center gap-5 p-6 rounded-2xl bg-white/[0.03] border border-white/10"
               >
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#00ffff]/30 to-[#4b3b82]/50 border-2 border-[#00ffff]/30 flex items-center justify-center text-2xl font-bold text-[#00ffff] shrink-0">
@@ -330,7 +330,7 @@ export default function BlogDetailClient({ post, related }: Props) {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className="mt-24 border-t border-white/[0.08] pt-16"
             >
               <h2 className="text-2xl font-bold text-white mb-8">Related Articles</h2>

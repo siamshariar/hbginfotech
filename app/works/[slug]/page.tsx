@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { NavHeader } from "@/components/nav-header"
 import { Footer } from "@/components/footer"
-import { projects } from "@/components/project-showcase"
+import { projects } from "@/lib/projects-data"
 import { ProjectDetailClient } from "@/components/project-detail-client"
 
 export function generateStaticParams() {

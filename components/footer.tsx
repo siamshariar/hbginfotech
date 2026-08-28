@@ -6,33 +6,11 @@ import Image from "next/image"
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react"
 
 const footerLinks = [
-  {
-    title: "Services",
-    links: [
-      { name: "Web Development", href: "/services/web-development" },
-      { name: "Mobile Development", href: "/services/mobile-development" },
-      { name: "Custom Software", href: "/services/custom-software" },
-      { name: "Domain & Hosting", href: "/services/domain-hosting" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { name: "About Us", href: "/about" },
-      { name: "Our Team", href: "/team" },
-      { name: "Portfolio", href: "/portfolio" },
-      { name: "Careers", href: "/careers" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { name: "Blog", href: "/blog" },
-      { name: "Case Studies", href: "/case-studies" },
-      { name: "Documentation", href: "/docs" },
-      { name: "Support", href: "/support" },
-    ],
-  },
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "Products", href: "/products" },
+  { name: "Works", href: "/works" },
+  { name: "About", href: "/about" },
 ]
 
 const socialLinks = [
@@ -48,11 +26,11 @@ export function Footer() {
       <div className="container px-4 md:px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Logo and Contact Info */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-3 space-y-6">
             <Link href="/" className="block">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/HBG-infotech-JSZoGGYrDJ1DEqzZ0qQkCPMMT8ffpx.png"
+                  src="/images/hbg-infotech-light.png"
                   alt="HBG Info Tech Logo"
                   width={180}
                   height={40}
@@ -79,24 +57,22 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Footer Links */}
-          {footerLinks.map((section, index) => (
-            <div key={index} className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">{section.title}</h3>
-              <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <Link
-                      href={link.href}
-                      className="text-white/70 hover:text-[#00ffff] transition-colors duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Footer Links — mirrors the header menu */}
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="text-lg font-semibold text-white">Menu</h3>
+            <ul className="space-y-2">
+              {footerLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-white/70 hover:text-[#00ffff] transition-colors duration-200"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Social Links and Copyright */}

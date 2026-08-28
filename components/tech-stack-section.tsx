@@ -64,7 +64,7 @@ export function TechStackSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-[#00ffff] to-white bg-clip-text text-transparent"
           >
             Our Tech Stack
@@ -73,7 +73,7 @@ export function TechStackSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="text-lg text-white/70 max-w-3xl mx-auto"
           >
             We leverage the latest technologies and frameworks to build robust and scalable solutions
@@ -88,7 +88,7 @@ export function TechStackSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className="relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#00ffff]/5 via-transparent to-transparent rounded-xl" />

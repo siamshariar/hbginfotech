@@ -263,7 +263,7 @@ export function ProductsShowcase() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1 rounded-full bg-[#00ffff]/10 text-[#00ffff] text-sm font-medium mb-4">
@@ -284,7 +284,7 @@ export function ProductsShowcase() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className={`flex flex-col-reverse ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-8 lg:gap-12`}
             >
               {/* Phone Mockup with Carousel - 40% width */}
@@ -330,7 +330,7 @@ export function ProductsShowcase() {
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: idx * 0.05 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                       className="flex items-center gap-2"
                     >
                       <Sparkles className="h-4 w-4 flex-shrink-0" style={{ color: product.color }} />

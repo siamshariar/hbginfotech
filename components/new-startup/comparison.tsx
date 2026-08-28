@@ -53,7 +53,7 @@ export function Comparison() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-full">
@@ -72,7 +72,7 @@ export function Comparison() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
           className="max-w-4xl mx-auto"
         >
           <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm">
@@ -103,7 +103,7 @@ export function Comparison() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
                 className="grid grid-cols-3 border-t border-white/10 group hover:bg-white/5 transition-colors duration-300"
               >
                 <div className="p-4 md:p-6 text-white font-medium">
@@ -131,7 +131,7 @@ export function Comparison() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
             className="mt-8 text-center"
           >
             <p className="text-white/60 mb-2">

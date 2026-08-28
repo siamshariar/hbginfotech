@@ -114,7 +114,7 @@ export function NavHeader() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           hasScrolled
             ? "bg-[#0f1629]/85 backdrop-blur-md border-b border-white/[0.08] shadow-[0_1px_12px_rgba(0,0,0,0.25)]"
-            : "bg-transparent border-b border-transparent"
+            : "bg-gradient-to-b from-black/35 via-black/10 to-transparent border-b border-transparent"
         }`}
       >
         <div className="mx-auto flex items-center justify-between px-6 lg:px-10 h-[72px]">
@@ -122,7 +122,7 @@ export function NavHeader() {
           <Link href="/" className="relative z-10 shrink-0">
             <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 400, damping: 15 }}>
               <Image
-                src="/images/hbg-infotech.png"
+                src="/images/hbg-infotech-light.png"
                 alt="HBG Info Tech Logo"
                 width={160}
                 height={36}

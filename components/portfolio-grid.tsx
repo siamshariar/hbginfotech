@@ -34,7 +34,7 @@ export function PortfolioGrid() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
         className="container px-4 md:px-6"
       >
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -52,7 +52,7 @@ export function PortfolioGrid() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "0px 0px 200px 0px", amount: 0.1 }}
               className="group relative overflow-hidden rounded-lg"
             >
               <Link href={project.link} className="block">

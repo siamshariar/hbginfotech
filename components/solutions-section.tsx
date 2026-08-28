@@ -42,7 +42,7 @@ export function SolutionsSection() {
   return (
     <section id="solutions" className="w-full py-24 md:py-32 bg-gradient-to-br from-[#1a1f35] to-[#2a2a4a]">
       <div className="container px-4 md:px-6">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-14">
           {solutions.map((solution, index) => (
             <motion.div
               key={index}
@@ -53,11 +53,11 @@ export function SolutionsSection() {
               className="group relative"
             >
               <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl bg-gradient-to-r ${solution.gradient}`}
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-lg bg-gradient-to-r ${solution.gradient}`}
               />
 
-              <div className="relative p-8 rounded-xl bg-white/5 backdrop-blur-sm border border-[#00ffff]/50 hover:border-[#00ffff] hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#00ffff]/5 to-transparent group-hover:from-[#00ffff]/10 transition-all duration-500 rounded-xl" />
+              <div className="relative p-8 rounded-xl bg-[#161c34] backdrop-blur-sm border border-[#00ffff]/50 hover:border-[#00ffff] hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#00ffff]/5 to-transparent group-hover:from-[#00ffff]/10 transition-all duration-500 rounded-xl pointer-events-none" />
                 <div className="relative flex items-center gap-4 mb-6">
                   <motion.div
                     whileHover={{ rotate: 360 }}

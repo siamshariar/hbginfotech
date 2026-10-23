@@ -2,21 +2,21 @@
 
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Mail, X } from "lucide-react"
+import { ArrowUpRight, Mail, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import { useState, useEffect, useCallback } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect, useRef } from "react"
+import { CONTACT_EMAIL, HBG_HOST_URL } from "@/lib/site-config"
 
 const menuItems = [
-  { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Products", href: "/products" },
-  { name: "Works", href: "/works" },
-  { name: "About", href: "/about" },
+  { name: "Home", href: "#home" },
+  { name: "Services", href: "#services" },
+  { name: "Products", href: "#products" },
+  { name: "About", href: "#about" },
 ]
+
+// Sections tracked for the active menu indicator, in page order.
+const sectionIds = ["home", "products", "services", "about", "contact"]
 
 const menuItemVariants = {
   hidden: { opacity: 0, x: 24 },
@@ -26,7 +26,7 @@ const menuItemVariants = {
     transition: {
       delay: i * 0.03,
       duration: 0.18,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   }),
   exit: { opacity: 0, x: 16, transition: { duration: 0.1 } },
@@ -55,38 +55,40 @@ function AnimatedMenuIcon({ isOpen }: { isOpen: boolean }) {
 }
 
 export function NavHeader() {
-  const pathname = usePathname()
-  const router = useRouter()
   const [hasScrolled, setHasScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  const handleContact = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault()
-      if (pathname === "/") {
-        // Already on home — just scroll directly to the section
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-      } else {
-        // Navigate to home with hash; ScrollToTop will skip reset because hash is present
-        router.push("/#contact")
-      }
-    },
-    [pathname, router],
-  )
+  const [activeSection, setActiveSection] = useState("home")
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 20)
+      // The last section may be too short to reach the middle of tall viewports
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        setActiveSection("contact")
+      }
     }
     window.addEventListener("scroll", handleScroll, { passive: true })
     handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Close mobile menu on route change
+  // Highlight the menu item of the section crossing the middle of the viewport
   useEffect(() => {
-    setMobileOpen(false)
-  }, [pathname])
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: "-45% 0px -50% 0px" },
+    )
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id)
+      if (section) observer.observe(section)
+    })
+    return () => observer.disconnect()
+  }, [])
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -100,9 +102,19 @@ export function NavHeader() {
     }
   }, [mobileOpen])
 
+  // Keyboard support for the mobile menu: focus the close button, close on Escape
+  useEffect(() => {
+    if (!mobileOpen) return
+    closeButtonRef.current?.focus()
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false)
+    }
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [mobileOpen])
+
   function isActive(href: string) {
-    if (href === "/") return pathname === "/"
-    return pathname.startsWith(href)
+    return href === `#${activeSection}`
   }
 
   return (
@@ -119,7 +131,7 @@ export function NavHeader() {
       >
         <div className="mx-auto flex items-center justify-between px-6 lg:px-10 h-[72px]">
           {/* Logo */}
-          <Link href="/" className="relative z-10 shrink-0">
+          <a href="#home" className="relative z-10 shrink-0" aria-label="HBG Info Tech home">
             <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 400, damping: 15 }}>
               <Image
                 src="/images/hbg-infotech-light.png"
@@ -130,18 +142,19 @@ export function NavHeader() {
                 priority
               />
             </motion.div>
-          </Link>
+          </a>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main">
             {menuItems.map((item) => {
               const active = isActive(item.href)
               return (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
+                  aria-current={active ? "true" : undefined}
                   className={`relative px-4 py-2 text-[0.925rem] font-medium tracking-wide transition-colors duration-150 ${
-                    active ? "text-white" : "text-white/60 hover:text-white/90"
+                    active ? "text-white" : "text-white/80 hover:text-white"
                   }`}
                 >
                   {item.name}
@@ -152,18 +165,31 @@ export function NavHeader() {
                       transition={{ type: "spring", stiffness: 380, damping: 28 }}
                     />
                   )}
-                </Link>
+                </a>
               )
             })}
+            <span className="mx-2 h-4 w-px bg-white/15" aria-hidden="true" />
+            <a
+              href={HBG_HOST_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-3 py-2 text-sm text-white/80 hover:text-white transition-colors duration-150"
+            >
+              HBG Host
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
           </nav>
 
           {/* Desktop CTA */}
           <Button
-            onClick={handleContact}
+            asChild
             className="hidden lg:flex relative overflow-hidden bg-[#00ffff]/10 text-[#00ffff] border border-[#00ffff]/30 hover:bg-[#00ffff] hover:text-[#0f1629] hover:border-[#00ffff] transition-all duration-200 px-5 h-9 text-sm font-semibold tracking-wide rounded-lg group"
           >
-            <Mail className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:rotate-[15deg]" />
-            Contact Us
+            <a href="#contact">
+              <Mail className="h-4 w-4 mr-2 transition-transform duration-300 group-hover:rotate-[15deg]" />
+              Contact Us
+            </a>
           </Button>
 
           {/* Mobile Menu Toggle */}
@@ -172,6 +198,8 @@ export function NavHeader() {
             onClick={() => setMobileOpen((prev) => !prev)}
             className="lg:hidden relative z-[60] p-2 -mr-2"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <AnimatedMenuIcon isOpen={mobileOpen} />
           </button>
@@ -196,6 +224,7 @@ export function NavHeader() {
             {/* Drawer Panel */}
             <motion.div
               key="mobile-drawer"
+              id="mobile-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -205,6 +234,7 @@ export function NavHeader() {
               {/* Close Button */}
               <div className="flex justify-end px-6 pt-6">
                 <button
+                  ref={closeButtonRef}
                   type="button"
                   onClick={() => setMobileOpen(false)}
                   className="p-2 rounded-lg border border-white/10 hover:border-[#00ffff]/50 hover:text-[#00ffff] text-white/60 transition-all duration-200"
@@ -214,9 +244,9 @@ export function NavHeader() {
                 </button>
               </div>
 
-              <div className="flex flex-col h-[calc(100%-60px)] pt-8 pb-10 px-8">
-                <nav className="flex flex-col gap-2">
-                  {menuItems.map((item, i) => {
+              <div className="flex flex-col h-[calc(100%-60px)] pt-8 pb-10 px-8 overflow-y-auto">
+                <nav className="flex flex-col gap-2" aria-label="Mobile">
+                  {[...menuItems, { name: "Contact Us", href: "#contact" }].map((item, i) => {
                     const active = isActive(item.href)
                     return (
                       <motion.div
@@ -227,8 +257,10 @@ export function NavHeader() {
                         animate="visible"
                         exit="exit"
                       >
-                        <Link
+                        <a
                           href={item.href}
+                          onClick={() => setMobileOpen(false)}
+                          aria-current={active ? "true" : undefined}
                           className={`flex items-center gap-3 py-3.5 px-4 rounded-xl text-lg font-medium transition-all duration-150 ${
                             active
                               ? "text-[#00ffff] bg-[#00ffff]/[0.08]"
@@ -239,39 +271,34 @@ export function NavHeader() {
                             <span className="w-1 h-5 rounded-full bg-[#00ffff] shrink-0" />
                           )}
                           {item.name}
-                        </Link>
+                        </a>
                       </motion.div>
                     )
                   })}
-                  {/* Contact Us — separate to use smart handler */}
-                  <motion.div
-                    custom={menuItems.length}
-                    variants={menuItemVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                  >
-                    <button
-                      type="button"
-                      onClick={(e) => { setMobileOpen(false); handleContact(e) }}
-                      className="w-full flex items-center gap-3 py-3.5 px-4 rounded-xl text-lg font-medium text-white/70 hover:text-white hover:bg-white/[0.04] transition-all duration-150"
-                    >
-                      <Mail className="h-4 w-4 shrink-0" />
-                      Contact Us
-                    </button>
-                  </motion.div>
                 </nav>
 
-                <div className="mt-auto">
+                <div className="mt-auto pt-8">
                   <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1, duration: 0.18 }}
-                    className="pt-6 border-t border-white/[0.08]"
+                    className="pt-6 border-t border-white/[0.08] space-y-4"
                   >
-                    <p className="text-white/40 text-xs font-medium tracking-wider uppercase mb-2">Get in touch</p>
-                    <a href="mailto:info@hbginfotech.com" className="text-white/60 text-sm hover:text-[#00ffff] transition-colors duration-150">
-                      info@hbginfotech.com
+                    <div>
+                      <p className="text-white/40 text-xs font-medium tracking-wider uppercase mb-2">Get in touch</p>
+                      <a href={`mailto:${CONTACT_EMAIL}`} className="text-white/60 text-sm hover:text-[#00ffff] transition-colors duration-150 break-all">
+                        {CONTACT_EMAIL}
+                      </a>
+                    </div>
+                    <a
+                      href={HBG_HOST_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-white/60 text-sm hover:text-[#00ffff] transition-colors duration-150"
+                    >
+                      HBG Host: domains &amp; hosting
+                      <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      <span className="sr-only">(opens in a new tab)</span>
                     </a>
                   </motion.div>
                 </div>

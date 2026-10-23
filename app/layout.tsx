@@ -1,36 +1,47 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ScrollToTop } from '@/components/scroll-to-top'
+import { MotionProvider } from '@/components/motion-provider'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
+// Exposes Geist as --font-sans, the variable Tailwind's `font-sans` is configured with
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const description =
+  'HBG Info Tech builds custom software, web and mobile apps for businesses, and creates its own family apps, SafeHandoff and KinTube Videos & Learning.'
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://hbginfotech.com'),
   title: {
     default: 'HBG Info Tech | Custom Software, Web & Mobile Development',
     template: '%s | HBG Info Tech',
   },
-  description:
-    'HBG Info Tech builds custom software, web, and mobile solutions — from enterprise applications to AI-powered products and startup MVPs.',
+  description,
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+      { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: '/apple-icon.png',
+    apple: { url: '/apple-icon.png', sizes: '180x180' },
   },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'HBG Info Tech',
+    title: 'HBG Info Tech | Custom Software, Web & Mobile Development',
+    description,
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'HBG Info Tech logo' }],
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#0f1629',
 }
 
 export default function RootLayout({
@@ -39,10 +50,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={geist.variable}>
       <body className="font-sans antialiased">
         <ScrollToTop />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

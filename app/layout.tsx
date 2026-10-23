@@ -12,8 +12,14 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 const description =
   'HBG Info Tech builds custom software, web and mobile apps for businesses, and creates its own family apps, SafeHandoff and KinTube Videos & Learning.'
 
+// Link previews (Facebook, LinkedIn, WhatsApp) need absolute URLs on a domain that serves this site.
+// Vercel sets this to the project's production domain: its shortest custom domain, or *.vercel.app if none.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : 'http://localhost:3000'
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hbginfotech.com'),
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'HBG Info Tech | Custom Software, Web & Mobile Development',
     template: '%s | HBG Info Tech',

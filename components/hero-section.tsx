@@ -203,7 +203,8 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-8"
         >
-          We deliver cutting-edge web and mobile solutions that drive innovation and business growth.
+          We design and build web apps, mobile apps and cloud solutions for businesses, and we make our own apps for
+          families too.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -215,7 +216,7 @@ export function HeroSection() {
             size="lg"
             className="bg-transparent border-2 border-white/20 text-white hover:border-[#00ffff]/50 hover:text-[#00ffff] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all duration-300 px-8 rounded-full"
           >
-            <a href="#services">LEARN MORE</a>
+            <a href="#services">EXPLORE SERVICES</a>
           </Button>
         </motion.div>
       </motion.div>

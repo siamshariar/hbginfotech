@@ -20,7 +20,7 @@ export function ContactSection() {
             Get in Touch
           </h2>
           <p className="text-lg text-white/70 mb-10">
-            Ready to start your next project? Contact us for a free consultation.
+            Have a project in mind? Email us and tell us about it.
           </p>
 
           <div className="relative">

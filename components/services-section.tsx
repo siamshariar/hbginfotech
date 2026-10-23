@@ -9,31 +9,31 @@ const services = [
   {
     icon: Code2,
     title: "Custom Software Development",
-    description: "Tailored solutions built with cutting-edge technologies to solve your unique business challenges.",
+    description: "Software built around your workflows, from internal tools to customer-facing platforms.",
     features: ["Web Applications", "Enterprise Software", "API Integration", "Legacy System Modernization"],
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
-    description: "Native and cross-platform mobile applications that deliver exceptional user experiences.",
+    description: "iOS and Android apps, native or cross-platform, designed to be easy to use.",
     features: ["iOS Development", "Android Development", "React Native", "Flutter"],
   },
   {
     icon: Globe2,
     title: "Web Development",
-    description: "Responsive and scalable web solutions that help businesses thrive in the digital world.",
+    description: "Fast, responsive websites and web apps, from company sites to online stores.",
     features: ["Frontend Development", "Backend Development", "E-commerce", "CMS Development"],
   },
   {
     icon: Database,
     title: "Database Solutions",
-    description: "Robust database architecture and management services for optimal data handling.",
+    description: "Database design, migration and tuning so your data stays organized and quick to access.",
     features: ["Database Design", "Migration", "Optimization", "Maintenance"],
   },
   {
     icon: Cloud,
     title: "Cloud Services",
-    description: "Cloud-native solutions and migration services to enhance scalability and performance.",
+    description: "Set up, migrate and scale your applications on AWS, Azure or Google Cloud.",
     features: ["AWS", "Azure", "Google Cloud", "Cloud Migration"],
   },
   {
@@ -46,13 +46,13 @@ const services = [
   {
     icon: Cpu,
     title: "AI & Machine Learning",
-    description: "Intelligent solutions that leverage the power of AI to drive business growth.",
+    description: "Practical AI features, from predictions to understanding text and images.",
     features: ["Predictive Analytics", "Natural Language Processing", "Computer Vision", "Machine Learning Models"],
   },
   {
     icon: BarChart,
     title: "Data Analytics",
-    description: "Transform your data into actionable insights with our analytics solutions.",
+    description: "Dashboards and reports that turn your data into clear decisions.",
     features: ["Business Intelligence", "Data Visualization", "Big Data Analytics", "Real-time Analytics"],
   },
 ]
@@ -96,8 +96,8 @@ export function ServicesSection() {
             Our Services
           </motion.h2>
           <motion.p variants={itemVariants} className="text-lg text-white/70 max-w-3xl mx-auto">
-            We offer a comprehensive suite of software development services to help businesses innovate and stay ahead
-            in the digital age.
+            From custom software to hosting, we cover what your business needs to build, launch and run its digital
+            products.
           </motion.p>
         </div>
 

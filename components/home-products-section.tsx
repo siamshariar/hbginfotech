@@ -38,7 +38,7 @@ const products = [
     name: "KinTube Videos & Learning",
     tagline: "Safe videos for kids",
     description:
-      "A video app that parents set up for their children. Each child gets a profile with an age group, video languages and a content-safety level, and only sees videos from the app’s own catalogue that match it.",
+      "Parents create a profile for each child, with an age group, video languages and a safety level, and KinTube shows only videos from its own catalog that fit.",
     features: [
       "Up to five child profiles, each with its own settings",
       "Parental PIN protects settings and profiles",
@@ -95,7 +95,7 @@ export function HomeProductsSection() {
             Apps That Make a Difference
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto text-lg">
-            Crafted with care to solve real problems for families.
+            Our own apps, built to help families use technology more safely.
           </p>
         </motion.div>
 

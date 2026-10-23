@@ -23,7 +23,10 @@ const pillars = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="w-full py-20 md:py-32 bg-gradient-to-b from-[#2a2a4a] to-[#1a1f35] border-t border-white/5">
+    <section
+      id="about"
+      className="w-full py-20 md:py-32 bg-[#12162b] border-t border-white/5"
+    >
       <div className="container px-4 md:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <motion.h2

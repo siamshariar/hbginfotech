@@ -7,7 +7,7 @@ import { CONTACT_EMAIL } from "@/lib/site-config"
 
 export function ContactSection() {
   return (
-    <section id="contact" className="w-full py-20 md:py-32 bg-gradient-to-b from-[#1a1f35] to-[#2a2a4a] border-t border-white/5">
+    <section id="contact" className="w-full py-20 md:py-32 bg-gradient-to-b from-[#1c2048] to-[#262b62] border-t border-white/5">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

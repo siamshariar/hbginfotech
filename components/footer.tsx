@@ -12,7 +12,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-b from-[#1a1f35] to-[#0f1729] border-t border-white/5">
+    <footer className="w-full bg-[#0c1022] border-t border-white/5">
       <div className="container px-4 md:px-6 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <a href="#home" className="shrink-0" aria-label="HBG Info Tech, back to top">

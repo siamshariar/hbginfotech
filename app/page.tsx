@@ -24,8 +24,8 @@ export default function Home() {
         <HeroSection />
         <ImpactSection />
         {/* <SolutionsSection /> — HBG Startup Solutions and HBG Host; HBG Host is linked from the header and services */}
-        <HomeProductsSection />
         <ServicesSection />
+        <HomeProductsSection />
         {/* <TechStackSection /> */}
         {/* <ProjectShowcase /> — Featured Projects */}
         {/* <WhyChooseUs /> — contains unverified statistics */}

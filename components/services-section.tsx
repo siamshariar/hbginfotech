@@ -80,7 +80,7 @@ export function ServicesSection() {
   }
 
   return (
-    <section id="services" className="w-full py-20 md:py-32 bg-gradient-to-b from-[#1a1f35] to-[#2a2a4a] border-t border-white/5">
+    <section id="services" className="w-full py-20 md:py-32 bg-[#12162b] border-t border-white/5">
       <motion.div
         initial="hidden"
         whileInView="visible"

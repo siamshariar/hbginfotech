@@ -16,7 +16,7 @@ const menuItems = [
 ]
 
 // Sections tracked for the active menu indicator, in page order.
-const sectionIds = ["home", "products", "services", "about", "contact"]
+const sectionIds = ["home", "services", "products", "about", "contact"]
 
 const menuItemVariants = {
   hidden: { opacity: 0, x: 24 },

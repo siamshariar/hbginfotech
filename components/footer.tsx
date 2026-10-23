@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Facebook, Linkedin } from "lucide-react"
+import { scrollToTop } from "@/lib/scroll-to-top"
 
 // Official HBG Info Tech pages. A link is rendered only once its URL is filled in.
 const socialLinks = [
@@ -15,7 +16,15 @@ export function Footer() {
     <footer className="w-full bg-[#0c1022] border-t border-white/5">
       <div className="container px-4 md:px-6 py-10">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          <a href="#home" className="shrink-0" aria-label="HBG Info Tech, back to top">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToTop()
+            }}
+            className="shrink-0"
+            aria-label="HBG Info Tech, back to top"
+          >
             <Image
               src="/images/hbg-infotech-light.png"
               alt="HBG Info Tech Logo"

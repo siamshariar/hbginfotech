@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
 import { CONTACT_EMAIL, HBG_HOST_URL } from "@/lib/site-config"
+import { SCROLL_TO_TOP_EVENT, scrollToTop } from "@/lib/scroll-to-top"
 
 const menuItems = [
   { name: "Home", href: "#home" },
@@ -59,10 +60,16 @@ export function NavHeader() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  // True while a logo click is scrolling back to the top; Home stays selected meanwhile
+  const holdHomeRef = useRef(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 20)
+      if (holdHomeRef.current) {
+        if (window.scrollY < 2) holdHomeRef.current = false
+        return
+      }
       // The last section may be too short to reach the middle of tall viewports
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
         setActiveSection("contact")
@@ -77,6 +84,7 @@ export function NavHeader() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        if (holdHomeRef.current) return
         entries.forEach((entry) => {
           if (entry.isIntersecting) setActiveSection(entry.target.id)
         })
@@ -88,6 +96,32 @@ export function NavHeader() {
       if (section) observer.observe(section)
     })
     return () => observer.disconnect()
+  }, [])
+
+  // A logo click selects Home at once instead of stepping through every section on the way up.
+  // If the visitor scrolls, taps or types before the top is reached, the tracking resumes from where they are.
+  useEffect(() => {
+    const handleScrollToTop = () => {
+      setActiveSection("home")
+      holdHomeRef.current = window.scrollY > 1
+    }
+    const release = () => {
+      if (!holdHomeRef.current) return
+      holdHomeRef.current = false
+      const middle = window.innerHeight / 2
+      const current = sectionIds.find((id) => {
+        const rect = document.getElementById(id)?.getBoundingClientRect()
+        return rect && rect.top <= middle && rect.bottom > middle
+      })
+      if (current) setActiveSection(current)
+    }
+    const inputs = ["wheel", "pointerdown", "keydown"] as const
+    window.addEventListener(SCROLL_TO_TOP_EVENT, handleScrollToTop)
+    inputs.forEach((type) => window.addEventListener(type, release, { passive: true }))
+    return () => {
+      window.removeEventListener(SCROLL_TO_TOP_EVENT, handleScrollToTop)
+      inputs.forEach((type) => window.removeEventListener(type, release))
+    }
   }, [])
 
   // Lock body scroll when mobile menu is open
@@ -131,7 +165,16 @@ export function NavHeader() {
       >
         <div className="mx-auto flex items-center justify-between px-6 lg:px-10 h-[72px]">
           {/* Logo */}
-          <a href="#home" className="relative z-10 shrink-0" aria-label="HBG Info Tech home">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault()
+              setMobileOpen(false)
+              scrollToTop()
+            }}
+            className="relative z-10 shrink-0"
+            aria-label="HBG Info Tech home"
+          >
             <motion.div whileHover={{ scale: 1.03 }} transition={{ type: "spring", stiffness: 400, damping: 15 }}>
               <Image
                 src="/images/hbg-infotech-light.png"

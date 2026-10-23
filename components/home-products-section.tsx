@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 
 // Product facts and screenshots come from each product's own sources:
 // SafeHandoff — https://safehandoff.app (copy, captions and screenshots published there)
-// KinTube Videos & Learning — the app's source code and Android QA screenshots (not yet published)
+// KinTube: Videos for the Family — the app's source code and Android QA screenshots (not yet published)
 const products = [
   {
     id: "safehandoff",
@@ -37,7 +37,7 @@ const products = [
   },
   {
     id: "kintube",
-    name: "KinTube Videos & Learning",
+    name: "KinTube: Videos for the Family",
     tagline: "Safe videos for kids",
     description:
       "Parents create a profile for each child, with an age group, video languages and a safety level, and KinTube shows only videos from its own catalog that fit.",
@@ -120,9 +120,59 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       }}
       className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition-colors duration-300 hover:border-[#00ffff]/40"
     >
+      {/* Details: grows to fill the card, so both slideshows line up at the bottom */}
+      <div className="flex flex-1 flex-col p-6 md:p-8">
+        <div className="flex items-center gap-4 mb-4">
+          <Image src={product.icon} alt="" width={56} height={56} className="h-14 w-14 shrink-0 rounded-2xl shadow-lg" />
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-white">{product.name}</h3>
+            <p className="text-sm font-medium" style={{ color: product.color }}>
+              {product.tagline}
+            </p>
+          </div>
+        </div>
+
+        <p className="text-white/70 leading-relaxed mb-5">{product.description}</p>
+
+        <ul className="space-y-2.5 mb-8">
+          {product.features.map((feature) => (
+            <li key={feature} className="flex items-start gap-2.5 text-sm text-white/70">
+              <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: product.color }} aria-hidden="true" />
+              {feature}
+            </li>
+          ))}
+        </ul>
+
+        {/* Status always sits under the button, so the buttons of both cards stay on one line at every width */}
+        <div className="mt-auto flex flex-col items-start gap-3">
+          {product.link.external ? (
+            <Button
+              asChild
+              className="rounded-full px-6 h-11 font-semibold text-[#0f1629] hover:opacity-90"
+              style={{ backgroundColor: product.color }}
+            >
+              <a href={product.link.href} target="_blank" rel="noopener noreferrer">
+                {product.link.label}
+                <ArrowUpRight className="h-4 w-4 ml-1" aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            </Button>
+          ) : (
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-full px-6 h-11 border-white/20 text-white hover:bg-white/10 hover:text-white bg-transparent"
+            >
+              <a href={product.link.href}>{product.link.label}</a>
+            </Button>
+          )}
+          <span className="text-sm text-white/50">{product.status}</span>
+        </div>
+      </div>
+
       {/* Screenshot slideshow */}
       <div
-        className="flex flex-col items-center px-5 pt-8 pb-6 sm:px-6"
+        className="flex flex-col items-center border-t border-white/10 px-5 py-8 sm:px-6"
         style={{ background: `radial-gradient(ellipse 75% 65% at 50% 40%, ${product.color}26, transparent 70%)` }}
       >
         <motion.div
@@ -143,7 +193,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               <Image
                 key={shot.src}
                 src={shot.src}
-                alt={`${product.name}: ${shot.caption}`}
+                alt={`${product.name} — ${shot.caption}`}
                 fill
                 sizes="240px"
                 draggable={false}
@@ -156,13 +206,10 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           })}
           <div className="absolute inset-x-0 bottom-0 z-10 h-1 bg-black/30">
             {running && (
-              <motion.div
+              <div
                 key={slide}
-                className="h-full"
-                style={{ backgroundColor: product.color }}
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: delay / 1000, ease: "linear" }}
+                className="slide-progress h-full"
+                style={{ backgroundColor: product.color, animationDuration: `${delay}ms` }}
               />
             )}
           </div>
@@ -214,55 +261,6 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           >
             {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
           </button>
-        </div>
-      </div>
-
-      {/* Details */}
-      <div className="flex flex-1 flex-col border-t border-white/10 p-6 md:p-8">
-        <div className="flex items-center gap-4 mb-4">
-          <Image src={product.icon} alt="" width={56} height={56} className="h-14 w-14 shrink-0 rounded-2xl shadow-lg" />
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold text-white">{product.name}</h3>
-            <p className="text-sm font-medium" style={{ color: product.color }}>
-              {product.tagline}
-            </p>
-          </div>
-        </div>
-
-        <p className="text-white/70 leading-relaxed mb-5">{product.description}</p>
-
-        <ul className="space-y-2.5 mb-8">
-          {product.features.map((feature) => (
-            <li key={feature} className="flex items-start gap-2.5 text-sm text-white/70">
-              <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: product.color }} aria-hidden="true" />
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3">
-          {product.link.external ? (
-            <Button
-              asChild
-              className="rounded-full px-6 h-11 font-semibold text-[#0f1629] hover:opacity-90"
-              style={{ backgroundColor: product.color }}
-            >
-              <a href={product.link.href} target="_blank" rel="noopener noreferrer">
-                {product.link.label}
-                <ArrowUpRight className="h-4 w-4 ml-1" aria-hidden="true" />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-            </Button>
-          ) : (
-            <Button
-              asChild
-              variant="outline"
-              className="rounded-full px-6 h-11 border-white/20 text-white hover:bg-white/10 hover:text-white bg-transparent"
-            >
-              <a href={product.link.href}>{product.link.label}</a>
-            </Button>
-          )}
-          <span className="text-sm text-white/50">{product.status}</span>
         </div>
       </div>
     </motion.article>

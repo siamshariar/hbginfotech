@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { Code2, Smartphone, Globe2, Database, Cloud, Server, Cpu, BarChart, ArrowUpRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { HBG_HOST_URL } from "@/lib/site-config"
 
 const services = [
@@ -107,7 +106,7 @@ export function ServicesSection() {
               key={index}
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
-              className="group relative overflow-hidden rounded-xl bg-white/5 p-6 backdrop-blur-sm border border-white/10 hover:border-[#00ffff]/50 transition-all duration-300"
+              className="group relative overflow-hidden rounded-xl bg-white/5 p-6 backdrop-blur-sm border border-white/10 hover:border-[#00ffff]/50 transition-colors duration-300"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#00ffff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -142,16 +141,6 @@ export function ServicesSection() {
               )}
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div variants={itemVariants} className="text-center mt-16">
-          <Button
-            asChild
-            size="lg"
-            className="bg-transparent border-2 border-white/20 text-white hover:border-[#00ffff]/50 hover:text-[#00ffff] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all duration-300 px-8 rounded-full"
-          >
-            <a href="#contact">Discuss Your Project</a>
-          </Button>
         </motion.div>
       </motion.div>
     </section>

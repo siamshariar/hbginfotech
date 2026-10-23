@@ -51,8 +51,10 @@ export function HeroSection() {
 
     let particles: Array<{ x: number; y: number; dx: number; dy: number; size: number; color: string }> = []
     const particleCount = 100
+    const particleColors = ["rgba(0, 255, 255, 0.18)", "rgba(255, 255, 0, 0.18)"]
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     let frameId = 0
+    let heroVisible = true
 
     function createParticles() {
       particles = []
@@ -63,12 +65,13 @@ export function HeroSection() {
           dx: (Math.random() - 0.5) * 1.5,
           dy: (Math.random() - 0.5) * 1.5,
           size: Math.random() * 2,
-          color: Math.random() > 0.5 ? "rgba(0, 255, 255, 0.18)" : "rgba(255, 255, 0, 0.18)",
+          color: Math.random() > 0.5 ? particleColors[0] : particleColors[1],
         })
       }
     }
 
     function animate() {
+      frameId = 0
       if (!ctx) return
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -80,15 +83,22 @@ export function HeroSection() {
 
         if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1
         if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1
-
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
-        ctx.fill()
       })
 
-      // With reduced motion the particles are drawn once and stay still
-      if (!reduceMotion) frameId = requestAnimationFrame(animate)
+      // One path per colour, so each frame needs two fill calls instead of one per particle
+      for (const color of particleColors) {
+        ctx.beginPath()
+        for (const particle of particles) {
+          if (particle.color !== color) continue
+          ctx.moveTo(particle.x + particle.size, particle.y)
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
+        }
+        ctx.fillStyle = color
+        ctx.fill()
+      }
+
+      // With reduced motion the particles are drawn once and stay still; they also pause while the hero is off screen
+      if (!reduceMotion && heroVisible) frameId = requestAnimationFrame(animate)
     }
 
     function resizeCanvas() {
@@ -98,12 +108,19 @@ export function HeroSection() {
       if (reduceMotion) animate()
     }
 
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      heroVisible = entry.isIntersecting
+      if (heroVisible && !reduceMotion && !frameId) frameId = requestAnimationFrame(animate)
+    })
+    if (containerRef.current) visibilityObserver.observe(containerRef.current)
+
     window.addEventListener("resize", resizeCanvas)
     resizeCanvas()
     if (!reduceMotion) animate()
 
     return () => {
       cancelAnimationFrame(frameId)
+      visibilityObserver.disconnect()
       window.removeEventListener("resize", resizeCanvas)
       canvas.remove()
     }
@@ -126,58 +143,24 @@ export function HeroSection() {
       <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-[#1a1f35] rounded-full blur-[128px] opacity-20" />
 
       {floatingIcons.map((item, index) => (
-        <motion.div
+        <div
           key={index}
           aria-hidden="true"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0.15, 0.4, 0.15],
-            scale: [0.8, 1, 0.8],
-            x: [0, -10, 10, -10, 0],
-            y: [0, -10, 10, -10, 0],
-          }}
-          transition={{
-            duration: 8,
-            delay: item.delay,
-            repeat: Number.POSITIVE_INFINITY,
-            repeatType: "reverse",
-          }}
-          style={{
-            position: "absolute",
-            left: item.x,
-            top: item.y,
-          }}
-          className={`text-[${item.color}] drop-shadow-[0_0_8px_${item.color}] filter blur-[0.5px]`}
+          style={{ left: item.x, top: item.y, animationDelay: `${item.delay}s` }}
+          className={`hero-float absolute text-[${item.color}] drop-shadow-[0_0_8px_${item.color}] filter blur-[0.5px]`}
         >
           <item.icon size={item.size} strokeWidth={1} />
-        </motion.div>
+        </div>
       ))}
 
-      <motion.div
+      <div
         aria-hidden="true"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{
-          opacity: [0.15, 0.4, 0.15],
-          scale: [0.8, 1, 0.8],
-          x: [0, -10, 10, -10, 0],
-          y: [0, -10, 10, -10, 0],
-        }}
-        transition={{
-          duration: 8,
-          delay: costIcon.delay,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse",
-        }}
-        style={{
-          position: "absolute",
-          left: costIcon.x,
-          top: costIcon.y,
-        }}
-        className={`text-[${costIcon.color}] drop-shadow-[0_0_8px_${costIcon.color}] filter blur-[0.5px] flex items-center -space-x-1`}
+        style={{ left: costIcon.x, top: costIcon.y, animationDelay: `${costIcon.delay}s` }}
+        className={`hero-float absolute text-[${costIcon.color}] drop-shadow-[0_0_8px_${costIcon.color}] filter blur-[0.5px] flex items-center -space-x-1`}
       >
         <DollarSign size={30} strokeWidth={1} />
         <TrendingDown size={30} strokeWidth={1} />
-      </motion.div>
+      </div>
 
       <motion.div style={{ scale }} className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         <div className="text-sm font-medium text-[#00ffff] mb-6 tracking-wider opacity-80">

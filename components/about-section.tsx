@@ -12,7 +12,7 @@ const pillars = [
   {
     icon: Smartphone,
     title: "Our Own Products",
-    description: "We design, build and maintain our own apps, including SafeHandoff and KinTube Videos & Learning.",
+    description: "We design, build and maintain our own apps, including SafeHandoff and KinTube: Videos for the Family.",
   },
   {
     icon: HeartHandshake,

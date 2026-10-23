@@ -10,7 +10,7 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 const description =
-  'HBG Info Tech builds custom software, web and mobile apps for businesses, and creates its own family apps, SafeHandoff and KinTube Videos & Learning.'
+  'HBG Info Tech builds custom software, web and mobile apps for businesses, and creates its own family apps, SafeHandoff and KinTube: Videos for the Family.'
 
 // Link previews (Facebook, LinkedIn, WhatsApp) need absolute URLs on a domain that serves this site.
 // Vercel sets this to the project's production domain: its shortest custom domain, or *.vercel.app if none.

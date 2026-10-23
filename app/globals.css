@@ -15,16 +15,6 @@ html {
   overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .floating {
-    animation: none;
-  }
-}
-
 body {
   background-color: #1a1f35;
   color: #ffffff;
@@ -50,7 +40,66 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Hero background icons. Only transform and opacity change, so the browser runs this off the main thread. */
+@keyframes hero-float {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: translate(0, 0) scale(0.8);
+  }
+  25%,
+  75% {
+    opacity: 0.275;
+    transform: translate(-10px, -10px) scale(0.9);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(10px, 10px) scale(1);
+  }
+}
+
+.hero-float {
+  opacity: 0;
+  animation: hero-float 8s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Product slideshow progress bar, scaled rather than resized so it does not trigger layout */
+@keyframes slide-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.slide-progress {
+  transform-origin: left;
+  animation: slide-progress linear forwards;
+}
+
 /* Add radial gradient utility */
 .bg-gradient-radial {
   background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Last, so it overrides the animations defined above */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .floating {
+    animation: none;
+  }
+
+  .hero-float {
+    animation: none;
+    opacity: 0.25;
+  }
+
+  .slide-progress {
+    animation: none;
+  }
 }

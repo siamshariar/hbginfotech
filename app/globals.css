@@ -5,12 +5,24 @@
 :root {
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
+  /* Keyboard focus ring for ui/button (`ring-ring`), in the brand cyan #00ffff */
+  --ring: 180 100% 50%;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
   overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .floating {
+    animation: none;
+  }
 }
 
 body {

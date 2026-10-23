@@ -51,6 +51,8 @@ export function HeroSection() {
 
     let particles: Array<{ x: number; y: number; dx: number; dy: number; size: number; color: string }> = []
     const particleCount = 100
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    let frameId = 0
 
     function createParticles() {
       particles = []
@@ -61,7 +63,7 @@ export function HeroSection() {
           dx: (Math.random() - 0.5) * 1.5,
           dy: (Math.random() - 0.5) * 1.5,
           size: Math.random() * 2,
-          color: Math.random() > 0.5 ? "rgba(0, 255, 255, 0.3)" : "rgba(255, 255, 0, 0.3)",
+          color: Math.random() > 0.5 ? "rgba(0, 255, 255, 0.18)" : "rgba(255, 255, 0, 0.18)",
         })
       }
     }
@@ -71,8 +73,10 @@ export function HeroSection() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((particle) => {
-        particle.x += particle.dx
-        particle.y += particle.dy
+        if (!reduceMotion) {
+          particle.x += particle.dx
+          particle.y += particle.dy
+        }
 
         if (particle.x < 0 || particle.x > canvas.width) particle.dx *= -1
         if (particle.y < 0 || particle.y > canvas.height) particle.dy *= -1
@@ -83,20 +87,23 @@ export function HeroSection() {
         ctx.fill()
       })
 
-      requestAnimationFrame(animate)
+      // With reduced motion the particles are drawn once and stay still
+      if (!reduceMotion) frameId = requestAnimationFrame(animate)
     }
 
     function resizeCanvas() {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
       createParticles()
+      if (reduceMotion) animate()
     }
 
     window.addEventListener("resize", resizeCanvas)
     resizeCanvas()
-    animate()
+    if (!reduceMotion) animate()
 
     return () => {
+      cancelAnimationFrame(frameId)
       window.removeEventListener("resize", resizeCanvas)
       canvas.remove()
     }
@@ -121,9 +128,10 @@ export function HeroSection() {
       {floatingIcons.map((item, index) => (
         <motion.div
           key={index}
+          aria-hidden="true"
           initial={{ opacity: 0, scale: 0 }}
           animate={{
-            opacity: [0.4, 1, 0.4],
+            opacity: [0.15, 0.4, 0.15],
             scale: [0.8, 1, 0.8],
             x: [0, -10, 10, -10, 0],
             y: [0, -10, 10, -10, 0],
@@ -146,9 +154,10 @@ export function HeroSection() {
       ))}
 
       <motion.div
+        aria-hidden="true"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
-          opacity: [0.4, 1, 0.4],
+          opacity: [0.15, 0.4, 0.15],
           scale: [0.8, 1, 0.8],
           x: [0, -10, 10, -10, 0],
           y: [0, -10, 10, -10, 0],
@@ -194,7 +203,8 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-8"
         >
-          We deliver cutting-edge web and mobile solutions that drive innovation and business growth.
+          We design and build web apps, mobile apps and cloud solutions for businesses, and we make our own apps for
+          families too.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -202,10 +212,11 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button
+            asChild
             size="lg"
             className="bg-transparent border-2 border-white/20 text-white hover:border-[#00ffff]/50 hover:text-[#00ffff] hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] transition-all duration-300 px-8 rounded-full"
           >
-            LEARN MORE
+            <a href="#services">EXPLORE SERVICES</a>
           </Button>
         </motion.div>
       </motion.div>

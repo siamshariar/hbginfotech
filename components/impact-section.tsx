@@ -19,8 +19,8 @@ export function ImpactSection() {
             <span className="text-[#2dd4bf]">Make an Impact</span>
           </h2>
           <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
-            From concept to execution, we deliver cutting-edge solutions that help businesses thrive in the digital age.
-            Our expertise spans across web development, custom applications, and innovative digital strategies.
+            From first idea to launch, we turn plans into reliable web and mobile software. We build custom applications
+            for businesses and our own apps for families, with the same care.
           </p>
         </motion.div>
       </div>
